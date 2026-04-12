@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --color-primary-50: #ecfdf5;
+  --color-primary-100: #d1fae5;
+  --color-primary-200: #a7f3d0;
+  --color-primary-300: #6ee7b7;
+  --color-primary-400: #34d399;
+  --color-primary-500: #10b981;
+  --color-primary-600: #059669;
+  --color-primary-700: #047857;
+  --color-primary-800: #065f46;
+  --color-primary-900: #064e3b;
+  
+  --font-sans: "DM Sans", sans-serif;
+  --font-serif: "Playfair Display", serif;
+}
+
+@layer base {
+  :root {
+    --bg-main: #F8FAFC;
+    --bg-card: #FFFFFF;
+    --text-primary: #0F172A;
+    --text-muted: #64748B;
+    --border: #E2E8F0;
+  }
+
+  .dark {
+    --bg-main: #0F172A;
+    --bg-card: #1E293B;
+    --text-primary: #F1F5F9;
+    --text-muted: #94A3B8;
+    --border: #334155;
+  }
+
+  body {
+    @apply bg-[var(--bg-main)] text-[var(--text-primary)] antialiased font-sans transition-colors duration-300;
+  }
+}
+
+@layer utilities {
+  .animate-gradient-shift {
+    animation: gradient-shift 8s ease infinite;
+  }
+  
+  @keyframes gradient-shift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+}
