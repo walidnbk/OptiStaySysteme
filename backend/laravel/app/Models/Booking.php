@@ -1,0 +1,42 @@
+<?php
+
+namespace App\Models;
+
+use App\Enums\BookingStatus;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+
+class Booking extends Model
+{
+    use HasFactory;
+
+    protected $fillable = [
+        'guest_id',
+        'room_id',
+        'check_in',
+        'check_out',
+        'status',
+        'total_amount',
+    ];
+
+    protected function casts(): array
+    {
+        return [
+            'check_in' => 'date',
+            'check_out' => 'date',
+            'total_amount' => 'decimal:2',
+            'status' => BookingStatus::class,
+        ];
+    }
+
+    public function guest(): BelongsTo
+    {
+        return $this->belongsTo(Guest::class);
+    }
+
+    public function room(): BelongsTo
+    {
+        return $this->belongsTo(Room::class);
+    }
+}
